@@ -242,7 +242,7 @@ void set_tcp_header(libnet_tcp_hdr* packet_tcp, uint32_t org_data_len){ // set i
 
     if(packet_type == 0){//http, Backward FIN
         backward_FIN_RST.tcp_hdr.th_flags |= TH_FIN;
-        //backward_FIN_RST.tcp_data = "blocked!!!";
+        backward_FIN_RST.tcp_data = "blocked!!!";
         // + set ip header length!, add tcp_data's length!
         backward_FIN_RST.ip_hdr.ip_len = htons(ntohs(backward_FIN_RST.ip_hdr.ip_len) + backward_FIN_RST.tcp_data.length());
     }
@@ -379,7 +379,7 @@ int main(int argc, char *argv[]){
             packet_type = 1;
         }
         */
-        packet_type = 1;
+        packet_type = 0;
         if(find_pattern(packet_output, packet_length)==0){//not matched!
             continue;
         }
